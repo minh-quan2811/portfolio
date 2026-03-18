@@ -1,0 +1,198 @@
+/* ===================== REUSABLE COMPONENT STYLES ===================== */
+
+/* PANEL LABEL */
+.panel-label {
+  font-family: var(--font-bangers);
+  font-size: 1.6rem;
+  letter-spacing: 0.1em;
+  color: #fff;
+  background: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 2px 20px 2px 16px;
+  margin-bottom: 1.25rem;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+}
+
+.label-jp {
+  font-family: var(--font-serif-jp);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--gold-light);
+  opacity: 0.7;
+}
+
+/* SKILL TAGS */
+.skill-tag {
+  font-family: var(--font-bangers);
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  padding: 5px 16px;
+  border: 2px solid var(--ink);
+  background: var(--gold-light);
+  box-shadow: var(--shadow-md);
+  color: var(--ink);
+  cursor: default;
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  display: inline-block;
+}
+
+.skill-tag:hover {
+  cursor: pointer;
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.skill-tag.red {
+  background: #f8c8c0;
+}
+
+.skill-tag.blue {
+  background: #c8d8f8;
+}
+
+.skill-tag.green {
+  background: #c8f0d8;
+}
+
+/* SKILLS WRAP */
+.skills-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* PROJECT CARDS */
+.project-card {
+  border: 2.5px solid var(--ink);
+  background: var(--parchment);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  position: relative;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 6px,
+    rgba(14, 10, 4, 0.018) 6px,
+    rgba(14, 10, 4, 0.018) 7px
+  );
+  pointer-events: none;
+}
+
+.project-card-top {
+  background: var(--red);
+  padding: 8px 12px;
+  border-bottom: 2px solid var(--ink);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.project-card-top.blue-top {
+  background: var(--blue);
+}
+
+.project-card-top.green-top {
+  background: #2a6a3a;
+}
+
+.project-num {
+  font-family: var(--font-serif-jp);
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+}
+
+.project-card-body {
+  padding: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.project-title {
+  font-family: var(--font-bangers);
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  margin-bottom: 5px;
+  line-height: 1.2;
+}
+
+.project-desc {
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  font-weight: 700;
+}
+
+.project-stack {
+  font-size: 10px;
+  color: var(--gold);
+  margin-top: 7px;
+  font-family: var(--font-serif-jp);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+/* PROJECTS GRID */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* PANELS */
+.panel {
+  border: 2px solid var(--ink);
+  position: relative;
+  overflow: hidden;
+  padding: 1.5rem;
+}
+
+.panel-full {
+  border: 3px solid var(--ink);
+  padding: 1.75rem 2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+
+/* Variant panels */
+.panel-skills {
+  background: var(--parchment);
+}
+
+.panel-projects {
+  background: var(--cream);
+}
+
+/* COMMON UTILITIES */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

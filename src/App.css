@@ -1,0 +1,67 @@
+/* App layout styles */
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Panel grid - hero section layout */
+.panel-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 0;
+  border: 3px solid var(--ink);
+  margin-bottom: 2rem;
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.panel {
+  border: 2px solid var(--ink);
+  position: relative;
+  overflow: hidden;
+  padding: 1.5rem;
+}
+
+/* Responsive layout */
+@media (max-width: 1024px) {
+  .panel-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 0 1rem 2rem;
+  }
+
+  .panel-grid {
+    border-width: 2px;
+    box-shadow: 4px 4px 0 var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  .panel-full {
+    border-width: 2px;
+    padding: 1.25rem 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 0 0.75rem 2rem;
+  }
+
+  .panel-grid {
+    border-width: 2px;
+    margin-bottom: 1rem;
+  }
+
+  .panel-label {
+    font-size: 1.2rem;
+    padding: 1px 12px 1px 10px;
+    margin-bottom: 1rem;
+  }
+}

@@ -1,0 +1,92 @@
+/* ===================== GLOBAL STYLES ===================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-comic);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+/* Aged paper texture background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(200, 146, 26, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(180, 120, 20, 0.04) 0%, transparent 50%),
+    repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(14, 10, 4, 0.018) 28px, rgba(14, 10, 4, 0.018) 29px),
+    repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(14, 10, 4, 0.012) 28px, rgba(14, 10, 4, 0.012) 29px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Links */
+a {
+  color: var(--ink);
+  text-decoration: none;
+  transition: color var(--transition-normal);
+}
+
+a:hover {
+  color: var(--red);
+}
+
+/* Wrapper */
+.wrapper {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 0 2rem 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Typography reset */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Animations */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes ticker {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.blink-animation {
+  animation: blink 1.4s ease-in-out infinite;
+}
+
+.ticker-animation {
+  animation: ticker 16s linear infinite;
+}
+
+/* Disable text selection on decorative elements */
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}

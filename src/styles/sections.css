@@ -1,0 +1,75 @@
+/* ========== AVAILABILITY PANEL ========== */
+
+.panel-avail {
+  background: var(--gold-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  min-height: 160px;
+}
+
+.panel-avail .big-text {
+  font-family: var(--font-bangers);
+  font-size: 1.5rem;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.avail-dot-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.avail-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--status-online);
+  border: 1.5px solid var(--ink);
+  animation: blink 1.4s ease-in-out infinite;
+}
+
+.panel-avail .small-text {
+  font-size: 12px;
+  color: #5a4a08;
+  margin-top: 6px;
+  font-weight: 700;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--red);
+  color: #fff;
+  font-family: var(--font-bangers);
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  padding: 4px 16px;
+  margin-top: 10px;
+  border: 2px solid var(--ink);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.badge:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ========== PROJECTS PANEL ========== */
+
+.panel-projects {
+  background: var(--cream);
+}
+
+/* ========== SKILLS PANEL ========== */
+
+.panel-skills {
+  background: var(--parchment);
+  id: skills;
+}

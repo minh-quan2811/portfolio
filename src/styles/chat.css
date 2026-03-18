@@ -1,0 +1,320 @@
+/* ========== CHAT INPUT ========== */
+
+.chat-input-row {
+  display: flex;
+  gap: 0;
+  border: 2.5px solid var(--ink);
+  box-shadow: var(--shadow-md);
+  margin-bottom: 1.5rem;
+}
+
+.chat-input {
+  flex: 1;
+  background: var(--cream);
+  border: none;
+  font-family: var(--font-comic);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 14px;
+  outline: none;
+  color: var(--ink);
+}
+
+.chat-input::placeholder {
+  color: #b0983a;
+  font-style: italic;
+}
+
+.chat-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.chat-btn {
+  background: var(--red);
+  color: #fff;
+  border: none;
+  border-left: 2.5px solid var(--ink);
+  font-family: var(--font-bangers);
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  padding: 10px 22px;
+  cursor: pointer;
+  transition: background var(--transition-normal);
+}
+
+.chat-btn:hover:not(:disabled) {
+  background: #a01010;
+}
+
+.chat-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ========== CHAT PANEL ========== */
+
+.panel-chat {
+  background: var(--parchment-dark);
+  border: 3px solid var(--ink);
+  padding: 1.75rem 2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+
+.panel-chat::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, transparent, transparent 40px,
+      rgba(14, 10, 4, 0.015) 40px, rgba(14, 10, 4, 0.015) 41px);
+  pointer-events: none;
+}
+
+/* Thought bubble */
+.thought-bubble {
+  background: var(--cream);
+  border: 2.5px solid var(--ink);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  position: relative;
+  margin-bottom: 1.25rem;
+}
+
+.thought-bubble::after {
+  content: '...';
+  position: absolute;
+  bottom: -22px;
+  left: 20px;
+  font-size: 1.4rem;
+  color: var(--ink);
+  letter-spacing: 2px;
+  font-weight: 900;
+}
+
+.thought-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* Chat chips - suggested questions */
+.chat-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 1.5rem 0 1.25rem;
+}
+
+.chip {
+  font-family: var(--font-comic);
+  font-size: 12px;
+  font-weight: 700;
+  border: 2px solid var(--ink);
+  padding: 5px 13px;
+  background: var(--gold-light);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
+  transition: transform var(--transition-fast);
+}
+
+.chip:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+/* Messages display area */
+.chat-messages {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 1.25rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.chat-message {
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.chat-message.user {
+  background: var(--blue);
+  color: #fff;
+  margin-left: auto;
+  max-width: 80%;
+  border: 1px solid var(--ink);
+}
+
+.chat-message.assistant {
+  background: #fef9f0;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  max-width: 80%;
+}
+
+.message-content {
+  word-wrap: break-word;
+}
+
+/* Error display */
+.chat-error {
+  background: #ffe0de;
+  border: 2px solid var(--red);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  color: var(--red);
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.chat-error p {
+  margin: 0;
+}
+
+/* Contact CTA */
+.contact-cta {
+  margin-top: 0.85rem;
+  border: 2.5px solid var(--ink);
+  background: var(--red);
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.contact-cta:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.cta-text {
+  font-family: var(--font-bangers);
+  font-size: 1.35rem;
+  letter-spacing: 0.08em;
+  color: #fff;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+.cta-jp {
+  font-family: var(--font-serif-jp);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.16em;
+  display: block;
+  margin-top: 2px;
+}
+
+.cta-arrow {
+  font-family: var(--font-bangers);
+  font-size: 1.8rem;
+  color: var(--gold-light);
+}
+
+/* ========== CONTACT GRID ========== */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  margin: 1.5rem 0 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-card {
+  border: 2.5px solid var(--ink);
+  padding: 0.9rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: var(--ink);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.contact-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.cc-gold {
+  background: var(--gold-light);
+}
+
+.cc-blue {
+  background: #d8e8ff;
+}
+
+.cc-red {
+  background: #ffe0de;
+}
+
+.cc-parchment {
+  background: var(--parchment-dark);
+}
+
+.cc-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border: 2px solid var(--ink);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  color: var(--ink);
+}
+
+.cc-name {
+  font-family: var(--font-bangers);
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.cc-handle {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #5a4a18;
+}
+
+.cc-sfx {
+  position: absolute;
+  right: 8px;
+  bottom: 2px;
+  font-family: var(--font-bangers);
+  font-size: 1.6rem;
+  opacity: 0.07;
+  color: var(--ink);
+  pointer-events: none;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
