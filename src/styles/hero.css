@@ -245,11 +245,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 1.25rem 1rem;
+  justify-content: flex-start;
+  padding: 0.75rem 0.6rem 0.6rem;
   flex: 1;
   position: relative;
   overflow: hidden;
+  min-height: 0;
 }
 
 .panel-photo::before {
@@ -269,7 +270,8 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 210px;
+  max-width: 260px;
+  max-height: 340px;
   background: var(--parchment);
   border: 3px solid var(--ink);
   box-shadow: var(--shadow-lg);
@@ -309,7 +311,7 @@
 /* Photo box */
 .op-poster-photo {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 3;
   background: var(--parchment-dark);
   overflow: hidden;
   position: relative;

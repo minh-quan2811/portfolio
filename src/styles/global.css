@@ -25,11 +25,11 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image:
-    radial-gradient(ellipse at 20% 50%, rgba(200, 146, 26, 0.06) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 20%, rgba(180, 120, 20, 0.04) 0%, transparent 50%),
-    repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(14, 10, 4, 0.018) 28px, rgba(14, 10, 4, 0.018) 29px),
-    repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(14, 10, 4, 0.012) 28px, rgba(14, 10, 4, 0.012) 29px);
+  background-image: url('../../public/hihi.jpg');
+  background-repeat: repeat;
+  background-size: 400px auto;
+  background-position: top left;
+  opacity: 0.55;
   pointer-events: none;
   z-index: 0;
 }

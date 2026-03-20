@@ -64,7 +64,7 @@ export const contactService = {
     const shareUrls = {
       twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text || title)}`,
       linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
-      github: `https://github.com/dangminhquan`, // Direct link since GitHub doesn't have share intent
+      github: `https://github.com/minh-quan2811`, // Direct link since GitHub doesn't have share intent
     };
 
     if (shareUrls[platform]) {

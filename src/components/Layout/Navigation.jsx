@@ -19,9 +19,9 @@ const Navigation = ({ onNavigate }) => {
   }, []);
 
   const navLinks = [
-    { label: 'Work', id: 'projects' },
-    { label: 'Skills', id: 'skills' },
     { label: 'About', id: 'about' },
+    { label: 'Skills', id: 'skills' },
+    { label: 'Work', id: 'projects' },
     { label: 'Contact', id: 'contact' },
   ];
 

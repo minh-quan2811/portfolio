@@ -5,9 +5,9 @@ import '../../styles/layout.css';
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const socialLinks = [
-    { label: 'GitHub', url: 'https://github.com/dangminhquan' },
-    { label: 'LinkedIn', url: 'https://linkedin.com/in/dangminhquan' },
-    { label: 'Email', url: 'mailto:contact@example.com' },
+    { label: 'GitHub', url: 'https://github.com/minh-quan2811' },
+    { label: 'LinkedIn', url: 'https://www.linkedin.com/in/minh-quan-dang-ece' },
+    { label: 'Email', url: 'danggminhquan2811@gmail.com' },
   ];
 
   return (

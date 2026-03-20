@@ -3,7 +3,6 @@ import React from 'react';
 import '../../styles/hero.css';
 
 const WantedPoster = () => {
-  const bountyAmount = 3000000000;
   const photoUrl = '/hehe.jpg';
 
   return (
@@ -25,14 +24,14 @@ const WantedPoster = () => {
 
         {/* Name block */}
         <div className="op-poster-name-block">
-          <div className="op-poster-name">DANG MINH QUAN</div>
+          <div className="op-poster-name">MINH · D · QUAN</div>
         </div>
 
         {/* Bounty block */}
         <div className="op-poster-bounty-block">
           <div className="op-poster-bounty-label">Bounty</div>
           <div className="op-poster-bounty-amount">
-            ${(bountyAmount / 1000000000).toFixed(1)}B
+            $3.000.000.000B
           </div>
         </div>
 

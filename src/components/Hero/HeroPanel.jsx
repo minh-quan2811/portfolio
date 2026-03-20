@@ -32,7 +32,7 @@ const HeroPanel = () => {
         <div className="op-intro">introducing</div>
         <span className="op-furigana">ダ ン グ &nbsp;&nbsp; ミ ン &nbsp;&nbsp; ク ア ン</span>
         <div className="hero-name">Dang Minh Quan</div>
-        <div className="op-epithet">"The AI Architect"</div>
+        <div className="op-epithet">"The AI Engineer"</div>
 
         <div className="op-narrator">
           His dream: to build AI systems so powerful they actually survive production. Armed with
@@ -42,7 +42,7 @@ const HeroPanel = () => {
 
       {/* Bottom caption */}
       <div className="op-caption-bottom">
-        <span className="op-caption-bottom-text">TO BE CONTINUED · 次のページへ · VOL.1</span>
+        <span className="op-caption-bottom-text">INTO THE GRAND LINE OF TECH · 偉大なる航路へ · VOL.1</span>
         <div className="op-page-dots">
           <div className="op-dot on"></div>
           <div className="op-dot"></div>

@@ -1,5 +1,5 @@
 // Main App component
-import React, { useState } from 'react';
+import React from 'react';
 import Navigation from './components/Layout/Navigation';
 import Footer from './components/Layout/Footer';
 import HeroPanel from './components/Hero/HeroPanel';
@@ -16,8 +16,11 @@ import './App.css';
 function App() {
   const handleNavigation = (sectionId) => {
     const element = document.getElementById(sectionId);
+    const nav = document.querySelector('.nav');
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const navHeight = nav ? nav.offsetHeight : 0;
+      const top = element.getBoundingClientRect().top + window.scrollY - navHeight - 16;
+      window.scrollTo({ top, behavior: 'smooth' });
     }
   };
 
@@ -28,7 +31,7 @@ function App() {
 
       <div className="wrapper">
         {/* HERO PANEL GRID */}
-        <div className="panel-grid">
+        <div className="panel-grid" id="about">
           <HeroPanel />
 
           {/* Right column: Wanted Poster + Availability */}

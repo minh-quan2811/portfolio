@@ -1,5 +1,5 @@
 // Contact grid component with social/contact cards
-import React from 'react';
+import React, { useState } from 'react';
 import '../../styles/chat.css';
 
 const ContactGrid = ({ onContactClick }) => {
@@ -7,8 +7,8 @@ const ContactGrid = ({ onContactClick }) => {
     {
       id: 'github',
       name: 'GitHub',
-      handle: 'github.com/dangminhquan',
-      url: 'https://github.com/dangminhquan',
+      handle: 'github.com/minh-quan2811',
+      url: 'https://github.com/minh-quan2811',
       color: 'cc-gold',
       sfx: 'POW!',
       icon: (
@@ -20,8 +20,8 @@ const ContactGrid = ({ onContactClick }) => {
     {
       id: 'linkedin',
       name: 'LinkedIn',
-      handle: 'linkedin.com/in/dangminhquan',
-      url: 'https://linkedin.com/in/dangminhquan',
+      handle: 'linkedin.com/in/minh-quan-dang-ece',
+      url: 'https://www.linkedin.com/in/minh-quan-dang-ece',
       color: 'cc-blue',
       sfx: 'ZAP!',
       icon: (
@@ -35,8 +35,8 @@ const ContactGrid = ({ onContactClick }) => {
     {
       id: 'email',
       name: 'Email',
-      handle: 'contact@example.com',
-      url: 'mailto:contact@example.com',
+      handle: 'danggminhquan2811@gmail.com',
+      url: 'mailto:danggminhquan2811@gmail.com',
       color: 'cc-red',
       sfx: 'BAM!',
       icon: (
@@ -64,34 +64,54 @@ const ContactGrid = ({ onContactClick }) => {
     },
   ];
 
-  const handleContactClick = (contact) => {
-    if (onContactClick) {
-      onContactClick(contact);
-    } else if (contact.url && contact.url !== '#download-resume') {
-      window.open(contact.url, '_blank');
-    }
+  const [copied, setCopied] = useState(false);
+
+  const handleEmailClick = (e) => {
+    e.preventDefault();
+    navigator.clipboard.writeText('danggminhquan2811@gmail.com').then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
   };
 
   return (
     <div className="contact-grid">
-      {contacts.map((contact) => (
-        <a
-          key={contact.id}
-          href={contact.url}
-          className={`contact-card ${contact.color}`}
-          onClick={(e) => {
-            e.preventDefault();
-            handleContactClick(contact);
-          }}
-        >
-          <div className="cc-icon">{contact.icon}</div>
-          <div>
-            <div className="cc-name">{contact.name}</div>
-            <div className="cc-handle">{contact.handle}</div>
-          </div>
-          <div className="cc-sfx">{contact.sfx}</div>
-        </a>
-      ))}
+      {contacts.map((contact) => {
+        if (contact.id === 'email') {
+          return (
+            <a
+              key={contact.id}
+              href={contact.url}
+              className={`contact-card ${contact.color}`}
+              onClick={handleEmailClick}
+            >
+              <div className="cc-icon">{contact.icon}</div>
+              <div>
+                <div className="cc-name">{contact.name}</div>
+                <div className="cc-handle">{copied ? 'Email Copied!' : contact.handle}</div>
+              </div>
+              <div className="cc-sfx">{copied ? 'YES!' : contact.sfx}</div>
+            </a>
+          );
+        }
+
+        return (
+          <a
+            key={contact.id}
+            href={contact.url}
+            className={`contact-card ${contact.color}`}
+            target={contact.url.startsWith('http') ? '_blank' : undefined}
+            rel={contact.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+          >
+            <div className="cc-icon">{contact.icon}</div>
+            <div>
+              <div className="cc-name">{contact.name}</div>
+              <div className="cc-handle">{contact.handle}</div>
+            </div>
+            <div className="cc-sfx">{contact.sfx}</div>
+          </a>
+        );
+      })}
     </div>
   );
 };
