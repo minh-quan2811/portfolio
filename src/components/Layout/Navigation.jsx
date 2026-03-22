@@ -21,7 +21,7 @@ const Navigation = ({ onNavigate }) => {
   const navLinks = [
     { label: 'About', id: 'about' },
     { label: 'Skills', id: 'skills' },
-    { label: 'Work', id: 'projects' },
+    { label: 'Projects', id: 'projects' },
     { label: 'Contact', id: 'contact' },
   ];
 

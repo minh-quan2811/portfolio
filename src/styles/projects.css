@@ -1,0 +1,678 @@
+/* ====================================================
+   projects.css  —  ARC LOG section
+   Used by: ProjectsPanel, ArcProjectCard, ProjectModal
+   ==================================================== */
+
+/* ── KEYFRAMES ── */
+@keyframes arc-sail {
+  0%,100% { transform: translateY(-50%) rotate(-1deg); }
+  50%      { transform: translateY(-55%) rotate(1deg);  }
+}
+@keyframes arc-pulse {
+  0%,100% { opacity: 1;   transform: scale(1);    }
+  50%      { opacity: 0.4; transform: scale(0.75); }
+}
+@keyframes arc-wavemove {
+  0%,100% { opacity: 0.22; }
+  50%      { opacity: 0.4;  }
+}
+@keyframes arc-fadeup {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+@keyframes arc-modalpop {
+  from { opacity: 0; transform: scale(0.96) translateY(10px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);    }
+}
+@keyframes arc-dimin {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── SECTION ── */
+.arc-section {
+  background: var(--cream);
+}
+
+/* ── TOGGLE HEADER ── */
+.arc-toggle-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 1.25rem;
+  gap: 12px;
+  user-select: none;
+}
+
+.arc-toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--ink);
+  padding: 2px 20px 2px 16px;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+  transition: background 0.15s;
+}
+
+.arc-toggle-header:hover .arc-toggle-label {
+  background: #2a1e0e;
+}
+
+.arc-toggle-title {
+  font-family: var(--font-bangers);
+  font-size: 1.6rem;
+  letter-spacing: 0.1em;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.arc-toggle-jp {
+  font-family: var(--font-serif-jp);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--gold-light);
+  opacity: 0.7;
+}
+
+.arc-toggle-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-right: 2px;
+}
+
+.arc-toggle-hint {
+  font-family: var(--font-bangers);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  color: #9a7a48;
+  transition: color 0.15s;
+}
+
+.arc-toggle-header:hover .arc-toggle-hint {
+  color: var(--ink);
+}
+
+.arc-toggle-chevron {
+  font-size: 12px;
+  color: #9a7a48;
+  transition: transform 0.35s ease, color 0.15s;
+  display: inline-block;
+  line-height: 1;
+}
+
+.arc-toggle-chevron.open {
+  transform: rotate(180deg);
+}
+
+.arc-toggle-header:hover .arc-toggle-chevron {
+  color: var(--ink);
+}
+
+/* ── CARDS DRAWER — animated expand / collapse ── */
+.arc-cards-drawer {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  overflow: hidden;
+  transition: grid-template-rows 0.38s ease, opacity 0.3s ease;
+}
+
+.arc-cards-drawer.open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+/* Direct child must have overflow:hidden and no padding
+   so 0fr collapses fully — padding lives on arc-cards-section instead */
+.arc-cards-drawer > .arc-cards-section {
+  overflow: hidden;
+  min-height: 0;
+  padding-top: 0.25rem;
+}
+
+/* ── SEA MAP ── */
+.arc-sea-zone {
+  background: #7aabcc;
+  position: relative;
+  height: 210px;
+  overflow: hidden;
+  border: 2.5px solid var(--ink);
+  margin-bottom: 0;
+}
+.arc-sea-top { position: absolute; inset: 0 0 50% 0; background: #8abcdc; }
+.arc-sea-bot { position: absolute; inset: 50% 0 0 0; background: #6a9ab8; }
+.arc-sea-lines {
+  position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(
+    180deg, transparent, transparent 16px,
+    rgba(255,255,255,.07) 16px, rgba(255,255,255,.07) 17px
+  );
+  pointer-events: none;
+}
+.arc-gl-band {
+  position: absolute; top: 50%; left: 0; right: 0; height: 24px;
+  transform: translateY(-50%);
+  background: #5a8aaa;
+  border-top: 2.5px solid var(--ink);
+  border-bottom: 2.5px solid var(--ink);
+  z-index: 2;
+}
+.arc-gl-label {
+  position: absolute; top: 50%; left: 14px;
+  transform: translateY(-50%);
+  font-family: var(--font-serif-jp); font-size: 0.46rem; font-weight: 700;
+  letter-spacing: 0.2em; color: rgba(255,255,255,.5); z-index: 3;
+}
+.arc-route {
+  position: absolute; top: 50%; left: 0; right: 0;
+  border-top: 2px dashed rgba(240,200,74,.65); z-index: 3;
+}
+
+/* Ship */
+.arc-ship-wrap {
+  position: absolute; top: 50%; left: 83%; z-index: 5;
+  animation: arc-sail 3.2s ease-in-out infinite;
+}
+
+/* Compass */
+.arc-compass-box { position: absolute; top: 10px; left: 14px; z-index: 6; }
+
+/* Year islands */
+.arc-year-island {
+  position: absolute; top: 50%; z-index: 4;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; align-items: center;
+  cursor: pointer;
+}
+/* Year floating above the island SVG */
+.arc-isle-yr-label {
+  font-family: var(--font-bangers);
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  text-shadow: 0 1px 0 var(--ink), 1px 0 0 var(--ink), -1px 0 0 var(--ink), 0 -1px 0 var(--ink);
+  margin-bottom: 3px;
+  transition: color .15s;
+}
+.arc-year-island.active .arc-isle-yr-label {
+  color: var(--gold-light);
+}
+
+/* The island SVG itself */
+.arc-isle-svg {
+  display: block;
+  transition: transform .15s, filter .15s;
+  filter: drop-shadow(2px 2px 0 rgba(14,10,4,0.35));
+}
+.arc-year-island:hover .arc-isle-svg {
+  transform: translateY(-4px);
+  filter: drop-shadow(4px 4px 0 rgba(14,10,4,0.45));
+}
+.arc-year-island.active .arc-isle-svg {
+  transform: translateY(-3px);
+  filter: drop-shadow(0 0 6px rgba(240,200,74,0.7)) drop-shadow(3px 3px 0 rgba(14,10,4,0.45));
+}
+.arc-isle-lbl {
+  font-family: var(--font-bangers); font-size: 0.75rem; letter-spacing: 0.08em;
+  color: var(--ink); margin-top: 5px; white-space: nowrap;
+  transition: color .15s;
+  text-shadow: 0 0 6px #e8dcc0;
+}
+.arc-year-island.active .arc-isle-lbl { color: var(--red); }
+.arc-isle-count {
+  font-family: var(--font-serif-jp); font-size: 0.42rem; font-weight: 700;
+  color: #3a2008; white-space: nowrap; letter-spacing: 0.08em;
+}
+
+/* NOW marker */
+.arc-now-marker {
+  position: absolute; top: 50%; right: 2.5%; z-index: 4;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; align-items: center;
+  cursor: pointer;
+}
+.arc-now-blob {
+  width: 46px; height: 40px;
+  border: 2.5px dashed var(--gold-light);
+  border-radius: 50% 40% 60% 50% / 50% 60% 40% 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(240,200,74,.12);
+  transition: background .15s, transform .15s;
+}
+.arc-now-marker:hover .arc-now-blob   { background: rgba(240,200,74,.28); transform: scale(1.1); }
+.arc-now-marker.active .arc-now-blob  { background: rgba(240,200,74,.3);  box-shadow: 0 0 0 2px var(--gold-light); }
+.arc-now-text { font-family: var(--font-bangers); font-size: 1rem; letter-spacing: 0.04em; color: var(--gold-light); }
+.arc-now-lbl  { font-family: var(--font-bangers); font-size: 0.62rem; letter-spacing: 0.06em; color: var(--gold-light); margin-top: 5px; white-space: nowrap; }
+.arc-now-sub  { font-family: var(--font-serif-jp); font-size: 0.4rem; font-weight: 700; color: rgba(240,200,74,.65); white-space: nowrap; }
+
+/* Waves */
+.arc-waves-svg {
+  position: absolute; bottom: 8px; left: 0; right: 0; z-index: 1;
+  pointer-events: none;
+  animation: arc-wavemove 2.8s ease-in-out infinite;
+}
+
+/* ── FILTER BAR ── */
+.arc-filter-bar {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  padding: 0.75rem 1rem;
+  border-top: 2px solid rgba(14,10,4,.1);
+  border-bottom: 2px solid rgba(14,10,4,.1);
+  background: var(--parchment-dark);
+  margin-bottom: 1.25rem;
+}
+.arc-filter-label {
+  font-family: var(--font-serif-jp); font-size: 0.5rem; font-weight: 700;
+  letter-spacing: 0.14em; color: #8a6a38; white-space: nowrap;
+}
+.arc-filter-chips { display: flex; gap: 7px; flex-wrap: wrap; }
+.arc-fchip {
+  font-family: var(--font-bangers); font-size: 0.9rem; letter-spacing: 0.06em;
+  padding: 3px 14px;
+  border: 2px solid var(--ink); background: var(--parchment); cursor: pointer;
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  transition: transform .1s, background .1s, box-shadow .1s;
+  box-shadow: 2px 2px 0 var(--ink); color: var(--ink);
+  user-select: none;
+}
+.arc-fchip:hover  { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--ink); }
+.arc-fchip.active { background: var(--ink); color: var(--gold-light); transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--gold); }
+.arc-filter-result {
+  margin-left: auto;
+  font-family: var(--font-serif-jp); font-size: 0.48rem; font-weight: 700;
+  color: #9a7a48; letter-spacing: 0.1em; white-space: nowrap;
+}
+
+/* ── YEAR GROUPS ── */
+.arc-cards-section { padding-top: 0; }
+.arc-year-group { margin-bottom: 1.5rem; animation: arc-fadeup .2s ease; }
+.arc-year-group:last-child { margin-bottom: 0; }
+.arc-yg-header  { display: flex; align-items: center; gap: 10px; margin-bottom: 0.85rem; }
+.arc-yg-year {
+  font-family: var(--font-bangers); font-size: 1.35rem; letter-spacing: 0.1em;
+  color: #fff; background: var(--ink);
+  padding: 1px 16px 1px 12px;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+  line-height: 1.4;
+}
+.arc-yg-line  { flex: 1; height: 2px; background: rgba(14,10,4,.15); }
+.arc-yg-count { font-family: var(--font-serif-jp); font-size: 0.5rem; font-weight: 700; color: #9a7a48; letter-spacing: 0.1em; }
+
+/* ── CARDS GRID — always 3 columns ── */
+.arc-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+/* ── PROJECT CARD ── */
+.arc-proj-card {
+  background: var(--parchment);
+  border: 2.5px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  cursor: pointer;
+  transition: transform .12s, box-shadow .12s;
+  display: flex; flex-direction: column;
+}
+.arc-proj-card:hover {
+  transform: translate(-2px,-2px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+/* Card top bar — shared between card and modal left */
+.arc-card-top {
+  padding: 7px 12px; border-bottom: 2px solid var(--ink);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.arc-top-r  { background: var(--red); }
+.arc-top-b  { background: var(--blue); }
+.arc-top-g  { background: #2a6a3a; }
+.arc-top-dk { background: #3a2a5a; }
+
+.arc-card-tag   { font-family: var(--font-serif-jp); font-size: 0.44rem; font-weight: 700; color: rgba(255,255,255,.65); letter-spacing: 0.08em; }
+.arc-card-range { font-family: var(--font-bangers); font-size: 0.82rem; color: var(--gold-light); }
+
+.arc-card-body { padding: 10px 12px 12px; flex: 1; display: flex; flex-direction: column; }
+.arc-card-title {
+  font-family: var(--font-bangers); font-size: 1rem; letter-spacing: 0.04em;
+  color: var(--ink); line-height: 1.15; margin-bottom: 5px;
+}
+.arc-card-pills { display: flex; flex-wrap: wrap; gap: 3px; margin-bottom: 6px; }
+.arc-pill {
+  font-family: var(--font-serif-jp); font-size: 0.42rem; font-weight: 700;
+  color: #5a4a18; background: rgba(14,10,4,.07);
+  border: 1px solid rgba(14,10,4,.18); padding: 2px 5px;
+}
+.arc-card-foot {
+  border-top: 1.5px dashed rgba(14,10,4,.2); padding-top: 6px;
+  display: flex; justify-content: space-between; align-items: center; margin-top: auto;
+}
+.arc-card-impact { font-family: var(--font-bangers); font-size: 0.8rem; letter-spacing: 0.04em; color: var(--gold); }
+.arc-card-status { display: flex; align-items: center; gap: 4px; font-family: var(--font-serif-jp); font-size: 0.42rem; font-weight: 700; color: #5a4a18; }
+
+/* Status dots */
+.arc-s-dot  { width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid var(--ink); display: inline-block; flex-shrink: 0; }
+.arc-s-done { background: #2a8a3a; animation: arc-pulse 2s ease-in-out infinite; }
+.arc-s-sail { background: var(--gold-light); animation: arc-pulse 1s ease-in-out infinite; }
+
+/* Empty state */
+.arc-empty     { text-align: center; padding: 2.5rem 1rem; }
+.arc-empty-txt { font-family: var(--font-bangers); font-size: 1.1rem; letter-spacing: 0.06em; color: #9a7a48; }
+.arc-empty-sub { font-family: var(--font-serif-jp); font-size: 0.52rem; font-weight: 700; color: #b0983a; margin-top: 4px; letter-spacing: 0.1em; }
+
+/* ── MODAL ── */
+.arc-modal-bg {
+  position: fixed; inset: 0;
+  background: rgba(14,10,4,.75);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9999; padding: 1.5rem;
+  animation: arc-dimin .18s ease;
+}
+
+.arc-modal-box {
+  background: var(--parchment);
+  border: 3px solid var(--ink);
+  box-shadow: 8px 8px 0 var(--ink);
+  width: 100%;
+  max-width: 860px;
+  height: 82vh;
+  display: flex;
+  flex-direction: column;
+  animation: arc-modalpop .22s ease;
+  overflow: hidden;
+}
+
+/* ── TOP BAR ── */
+.arc-modal-topbar {
+  background: var(--ink);
+  padding: 10px 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0;
+  border-bottom: 2px solid rgba(240,200,74,.2);
+}
+.arc-modal-topbar-tag {
+  font-family: var(--font-serif-jp);
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(240,200,74,.6);
+  letter-spacing: 0.18em;
+}
+.arc-modal-close {
+  font-family: var(--font-bangers);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,.5);
+  cursor: pointer;
+  padding: 4px 10px;
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,.18);
+  transition: color .1s, border-color .1s;
+  line-height: 1;
+}
+.arc-modal-close:hover {
+  color: var(--gold-light);
+  border-color: rgba(240,200,74,.5);
+}
+
+/* ── SPLIT BODY ── */
+.arc-modal-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.65fr);
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* ── LEFT — hosts the real ArcProjectCard component ── */
+.arc-modal-left {
+  border-right: 3px solid var(--ink);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: var(--parchment-dark);
+  overflow: hidden;
+  padding: 1.5rem;
+}
+
+/* Wrapper that holds the card and lets it fill the left column */
+.arc-modal-card-wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Inside the modal: fill wrapper, disable hover lift */
+.arc-modal-card-wrap .arc-proj-card {
+  flex: 1;
+  cursor: default;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.arc-modal-card-wrap .arc-proj-card:hover {
+  transform: none;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+/* Scale up card internals slightly for modal reading size */
+.arc-modal-card-wrap .arc-card-top   { padding: 10px 14px; }
+.arc-modal-card-wrap .arc-card-tag   { font-size: 10px; }
+.arc-modal-card-wrap .arc-card-range { font-size: 13px; }
+.arc-modal-card-wrap .arc-card-body  { padding: 14px 14px 16px; display: flex; flex-direction: column; }
+.arc-modal-card-wrap .arc-card-title { font-size: 1.2rem; margin-bottom: 8px; }
+.arc-modal-card-wrap .arc-card-pills { gap: 5px; margin-bottom: 10px; }
+.arc-modal-card-wrap .arc-pill       { font-size: 10px; padding: 3px 7px; }
+.arc-modal-card-wrap .arc-card-foot  { padding-top: 10px; margin-top: auto; }
+.arc-modal-card-wrap .arc-card-impact { font-size: 1rem; }
+.arc-modal-card-wrap .arc-card-status { font-size: 11px; }
+
+/* ── RIGHT — scrollable detail ── */
+.arc-modal-right {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--cream);
+  min-height: 0;
+}
+
+.arc-modal-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 0;
+}
+.arc-modal-scroll::-webkit-scrollbar       { width: 4px; }
+.arc-modal-scroll::-webkit-scrollbar-track { background: rgba(14,10,4,.05); }
+.arc-modal-scroll::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+/* ── DETAIL SECTIONS ── */
+.arc-detail-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Section label — readable, consistent */
+.arc-detail-lbl {
+  font-family: var(--font-serif-jp);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--red);
+  display: block;
+  padding-bottom: 6px;
+  border-bottom: 1.5px dashed rgba(14,10,4,.18);
+  text-transform: uppercase;
+}
+
+/* Overview text */
+.arc-detail-overview {
+  font-family: var(--font-comic);
+  font-size: 12px;
+  font-weight: 700;
+  font-style: italic;
+  color: #5a4a18;
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* Stats grid */
+.arc-detail-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.arc-detail-stat {
+  background: var(--parchment);
+  border: 1.5px solid rgba(14,10,4,.15);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.arc-detail-stat-name {
+  font-family: var(--font-serif-jp);
+  font-size: 9px;
+  font-weight: 700;
+  color: #8a6a38;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  display: block;
+}
+.arc-detail-stat-val {
+  font-family: var(--font-bangers);
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  line-height: 1.1;
+  display: block;
+}
+
+/* Crew grid */
+.arc-detail-crew-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.arc-detail-crew-card {
+  background: var(--parchment);
+  border: 1.5px solid rgba(14,10,4,.15);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.arc-detail-crew-role {
+  font-family: var(--font-serif-jp);
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--red);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  display: block;
+}
+.arc-detail-crew-name {
+  font-family: var(--font-bangers);
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.arc-detail-crew-note {
+  font-family: var(--font-comic);
+  font-size: 11px;
+  font-weight: 700;
+  color: #8a6a38;
+  font-style: italic;
+  margin-top: 1px;
+}
+
+/* Tech stack pills */
+.arc-detail-stack-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.arc-detail-stack-pill {
+  font-family: var(--font-serif-jp);
+  font-size: 10px;
+  font-weight: 700;
+  color: #5a4a18;
+  background: rgba(14,10,4,.06);
+  border: 1.5px solid rgba(14,10,4,.18);
+  padding: 5px 10px;
+  letter-spacing: 0.04em;
+}
+
+/* Key achievements */
+.arc-detail-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.arc-detail-highlight {
+  font-family: var(--font-comic);
+  font-size: 12px;
+  font-weight: 700;
+  color: #5a4a18;
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.6;
+}
+.arc-detail-highlight::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 7px;
+  height: 7px;
+  background: var(--gold);
+  border: 1.5px solid var(--ink);
+}
+
+/* ── MODAL FOOTER ── */
+.arc-modal-footer {
+  border-top: 2px solid var(--ink);
+  padding: 10px 1.5rem;
+  background: var(--parchment-dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.arc-modal-footer-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-bangers);
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+.arc-modal-footer-meta {
+  font-family: var(--font-serif-jp);
+  font-size: 10px;
+  font-weight: 700;
+  color: #9a7a48;
+  letter-spacing: 0.14em;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .arc-cards-grid   { grid-template-columns: 1fr; }
+  .arc-modal-body   { grid-template-columns: 1fr; }
+  .arc-modal-left   { border-right: none; border-bottom: 3px solid var(--ink); }
+  .arc-sea-zone     { height: 160px; }
+  .arc-filter-bar   { flex-direction: column; align-items: flex-start; }
+  .arc-filter-result { margin-left: 0; }
+}

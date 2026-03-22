@@ -25,11 +25,11 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: url('../../public/hihi.jpg');
+  background-image: url('../../public/hihihi.png');
   background-repeat: repeat;
   background-size: 400px auto;
   background-position: top left;
-  opacity: 0.55;
+  opacity: 0.8;
   pointer-events: none;
   z-index: 0;
 }
